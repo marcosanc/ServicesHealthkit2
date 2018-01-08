@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun invocarCatalogGender(gender: GenderRequest){
-        disposable =  apisRPM.getCtalogGender(gender.access_token)
+        disposable =  apisRPM.getCatalogGender(gender.access_token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
