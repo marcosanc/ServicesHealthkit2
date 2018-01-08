@@ -5,4 +5,4 @@ package com.example.planetmedia.serviceshealthkit.Network.RqObjets
  */
 data class AcceessCodeRequest(
         var temporal_token: String =""
-)
+) 
