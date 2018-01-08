@@ -1,10 +1,7 @@
 package com.victoria.planetmedia.androidtabvictoria.network
 import com.chilangolabs.victoria.network.RsObjects.ResponseActivationCode
-import com.chilangolabs.victoria.network.RsObjects.ResponseLoginOauthToken
 import com.example.planetmedia.serviceshealthkit.Network.RsObjets.ResponseCatalogGender
-import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.RecoverPasswordBody
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
