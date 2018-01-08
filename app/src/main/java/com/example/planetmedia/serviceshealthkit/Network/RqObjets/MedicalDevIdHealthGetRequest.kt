@@ -3,7 +3,7 @@ package com.victoria.planetmedia.androidtabvictoria.network.RqObjects
 /**
  * Created by ing.juanmejia on 08/01/18.
  */
-data class MedicalDevIdHealthGet(
+data class MedicalDevIdHealthGetRequest(
 
         var access_token: String="",
         var period: String="",
