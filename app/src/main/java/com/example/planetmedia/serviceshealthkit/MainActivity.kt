@@ -234,5 +234,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun invocarStatement(statm: StatementRequest){
+        disposable =  apisCore.getStatement(statm.access_token, statm.statement)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarStatement(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarStatement(stat:ResponseStatement){
+
+        Log.i("taml", stat.toString())
+
+    }
+
 }
 

@@ -1,5 +1,7 @@
 package com.victoria.planetmedia.androidtabvictoria.network
 import com.chilangolabs.victoria.network.RsObjects.ResponseLoginOauthToken
+import com.example.planetmedia.serviceshealthkit.Network.RsObjets.ResponseAccessCode
+import com.example.planetmedia.serviceshealthkit.Network.RsObjets.ResponseStatement
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -10,6 +12,9 @@ interface ApiVictoriaCore {
 
     @POST("oauth/token")
     fun loginOauth(@Header("Authorization") token: String = "Authorization", @Query("password") password: String, @Query("username") username: String, @Query("grant_type") grantType: String): Observable<ResponseLoginOauthToken>
+
+    @GET("/statements/{statement}")
+    fun getStatement(@Query("access_token") token: String, @Path(value = "statement", encoded = true) statement : String): Observable<ResponseStatement>
 
 
 
