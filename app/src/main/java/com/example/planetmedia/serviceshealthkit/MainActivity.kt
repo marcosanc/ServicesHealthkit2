@@ -3,9 +3,7 @@ package com.example.planetmedia.serviceshealthkit
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.planetmedia.serviceshealthkit.Network.RqObjets.GenderRequest
-import com.example.planetmedia.serviceshealthkit.Network.RqObjets.MedicalDevIdHealthIndicatorGetReqst
-import com.example.planetmedia.serviceshealthkit.Network.RqObjets.PatientMonHealthIndicProgressRequest
+import com.example.planetmedia.serviceshealthkit.Network.RqObjets.*
 import com.example.planetmedia.serviceshealthkit.Network.RsObjets.*
 import com.victoria.planetmedia.androidtabvictoria.network.ApiVictoriaCore
 import com.victoria.planetmedia.androidtabvictoria.network.ApiVictoriaRPM
@@ -184,5 +182,57 @@ class MainActivity : AppCompatActivity() {
         Log.i("taml", indicprogress.size.toString())
 
     }
+
+    fun invocarPatientMonPlanIdProgress(patmonprogress: PatientMonProgressRequest){
+        disposable =  apisRPM.getPatientMonPlanIdProgress(patmonprogress.access_token, patmonprogress.patientMonitoringPlanId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarPatientMonPlanIdProgress(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarPatientMonPlanIdProgress(monprogress:ResponsePatientMonPlanIdProgress ){
+
+        Log.i("taml", monprogress.toString())
+
+    }
+
+    fun invocarPatientMonPlan(monplan: PatientMoniPlanRequest){
+        disposable =  apisRPM.getPatientMonPlan(monplan.access_token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarPatientMonPlan(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarPatientMonPlan(patientm:List<ResponsePatientMonPlan>){
+
+        Log.i("taml", patientm.size.toString())
+
+    }
+
+    fun invocarWorkingHours(working: CandidatesIdWorkingHoursRequest){
+        disposable =  apisRPM.getWorkingHours(working.access_token, working.candidateId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarWorkingHours(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarWorkingHours(whours:List<ResponseWorkingHours>){
+
+        Log.i("taml", whours.size.toString())
+
+    }
+
 }
 
