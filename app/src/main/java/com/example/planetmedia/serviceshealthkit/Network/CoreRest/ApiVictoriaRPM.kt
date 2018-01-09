@@ -1,13 +1,7 @@
 package com.victoria.planetmedia.androidtabvictoria.network
 import com.chilangolabs.victoria.network.RsObjects.ResponseActivationCode
-import com.chilangolabs.victoria.network.RsObjects.ResponseLoginOauthToken
-import com.example.planetmedia.serviceshealthkit.Network.RsObjets.ResponseAccessCode
-import com.example.planetmedia.serviceshealthkit.Network.RsObjets.ResponseCatalogCountry
-import com.example.planetmedia.serviceshealthkit.Network.RsObjets.ResponseCatalogGender
-import com.example.planetmedia.serviceshealthkit.Network.RsObjets.ResponseMedicalDevice
-import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.RecoverPasswordBody
+import com.example.planetmedia.serviceshealthkit.Network.RsObjets.*
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,10 +22,22 @@ interface ApiVictoriaRPM {
     fun getCatalogCountry(@Query("access_token") token: String): Observable<List<ResponseCatalogCountry>>
 
     @GET("/catalog/medical-device")
-    fun getMedicalDevice(@Query("access_token") token: String): Observable<List<ResponseMedicalDevice>>
+    fun getCatalogdicalDevice(@Query("access_token") token: String): Observable<List<ResponseCatalogMedicalDevice>>
 
+    @GET("/me/activity")
+    fun getMeActivity(@Query("access_token") token: String, @Query("filter_by") filter_by:String, @Query("date") date:String, @Query("page") page:String, @Query("per_page") per_page:String): Observable<List<ResponseMeActivity>>
 
+    @GET("/activity/{activityId}")
+    fun getActivityId(@Path(value = "activityId ", encoded = true) activityId : String, @Query("access_token ") token: String): Observable<ResponseActivatityId>
 
+    @GET("/me/medical-device")
+    fun getMeMedicalDevice(@Query("access_token") token: String): Observable<List<ResponseMeMedicalDevice>>
+
+    @GET("/medical-device/{medicalDeviceId}/health-indicator-measurement")
+    fun getmedicalDeviceId(@Query("access_token") token: String, @Query("period") period:String, @Path(value = "medicalDeviceId ", encoded = true) medicalDeviceId : String, @Query("health_indicator_id") health_indicator_id: String): Observable<List<ResponseMedicalDeviceId>>
+
+    @GET("/medical-device/{medicalDeviceId}/health-indicator")
+    fun getMeMedicalDeviceIdIndicador(@Query("access_token") token: String, @Path(value = "medicalDeviceId ", encoded = true) medicalDeviceId : String): Observable<List<ResponseMedicalDeviceIdIndicator>>
 
     companion object objVictoriaRPM {
 
