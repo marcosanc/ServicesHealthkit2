@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.planetmedia.serviceshealthkit.Network.RqObjets.GenderRequest
 import com.example.planetmedia.serviceshealthkit.Network.RqObjets.MedicalDevIdHealthIndicatorGetReqst
+import com.example.planetmedia.serviceshealthkit.Network.RqObjets.PatientMonHealthIndicProgressRequest
 import com.example.planetmedia.serviceshealthkit.Network.RsObjets.*
 import com.victoria.planetmedia.androidtabvictoria.network.ApiVictoriaCore
 import com.victoria.planetmedia.androidtabvictoria.network.ApiVictoriaRPM
@@ -164,6 +165,23 @@ class MainActivity : AppCompatActivity() {
     fun  usarMedicalDeviceIdIndicator(deviceindicator:List<ResponseMedicalDeviceIdIndicator> ){
 
         Log.i("taml", deviceindicator.size.toString())
+
+    }
+
+    fun invocarPatientHealthIndicProgress(patientprogress: PatientMonHealthIndicProgressRequest){
+        disposable =  apisRPM.getPatientHealthIndicProgress(patientprogress.access_token, patientprogress.monitoringPlanId, patientprogress.health_indicator_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarPatientHealthIndicProgress(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarPatientHealthIndicProgress(indicprogress:List<ResponsePatientHealthIndicProgress> ){
+
+        Log.i("taml", indicprogress.size.toString())
 
     }
 }

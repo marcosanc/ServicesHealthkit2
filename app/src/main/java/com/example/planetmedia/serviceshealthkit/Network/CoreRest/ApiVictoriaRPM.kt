@@ -39,6 +39,10 @@ interface ApiVictoriaRPM {
     @GET("/medical-device/{medicalDeviceId}/health-indicator")
     fun getMeMedicalDeviceIdIndicador(@Query("access_token") token: String, @Path(value = "medicalDeviceId ", encoded = true) medicalDeviceId : String): Observable<List<ResponseMedicalDeviceIdIndicator>>
 
+    @GET("/patient-monitoring-plan/{monitoringPlanId}/health-indicator-progress")
+    fun getPatientHealthIndicProgress(@Query("access_token") token: String, @Path(value = "monitoringPlanId", encoded = true) monitoringPlanId : String, @Query("health_indicator_id ") health_indicator_id : String): Observable<List<ResponsePatientHealthIndicProgress>>
+
+
     companion object objVictoriaRPM {
 
         fun create(): ApiVictoriaRPM {
