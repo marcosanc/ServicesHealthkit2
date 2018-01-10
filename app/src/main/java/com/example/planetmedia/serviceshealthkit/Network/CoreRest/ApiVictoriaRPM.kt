@@ -1,5 +1,6 @@
 package com.victoria.planetmedia.androidtabvictoria.network
 import com.chilangolabs.victoria.network.RsObjects.ResponseActivationCode
+import com.example.planetmedia.serviceshealthkit.Network.RqObjets.PatientMonHealthIndGoalRequest
 import com.example.planetmedia.serviceshealthkit.Network.RqObjets.ScheduleCallRequest
 import com.example.planetmedia.serviceshealthkit.Network.RsObjets.*
 import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.MedicalDevIdHealthPostRequest
@@ -78,6 +79,8 @@ interface ApiVictoriaRPM {
     @POST("/medical-device/{medicalDeviceId}/health-indicator-measurement")
     fun getHealthIndicMeasurement(@Query("access_token ") token: String, @Path(value = "medicalDeviceId", encoded = true) medicalDeviceId : String, @Body HealthIndicatorMeasurementPOST : MedicalDevIdHealthPostRequest): Observable<ResponseHealthIndicMeasurement>
 
+    @POST("/patient-monitoring-plan/{monitoringPlanId}/health-indicator-goal")
+    fun getHealthIndicGoal(@Query("access_token ") token: String, @Path(value = "monitoringPlanId ", encoded = true) monitoringPlanId  : String, @Body HealthIndicatorGoalPOST : PatientMonHealthIndGoalRequest): Observable<ResponseHealthIndicatorGoal>
 
 
 

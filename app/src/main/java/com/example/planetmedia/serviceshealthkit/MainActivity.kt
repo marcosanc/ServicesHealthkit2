@@ -347,5 +347,20 @@ class MainActivity : AppCompatActivity() {
         Log.i("taml", hmeasu.toString())
     }
 
+    fun invocarHealthIndicGoal(hgoal : PatientMonHealthIndGoalRequest){
+        disposable = apisRPM.getHealthIndicGoal(hgoal.access_token, hgoal.monitoringPlanId, hgoal.copy())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarHealthIndicGoal(result)},
+                        { error -> Log.d("error",error.message)}
+                )
+    }
+
+    fun usarHealthIndicGoal(healthg: ResponseHealthIndicatorGoal){
+
+        Log.i("taml", healthg.toString())
+    }
+
 }
 
