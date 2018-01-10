@@ -1,12 +1,12 @@
-package com.victoria.planetmedia.androidtabvictoria.network.RqObjects
+package com.example.planetmedia.serviceshealthkit.Network.RqObjets
 
 /**
- * Created by PLANETMEDIA on 03/01/2018.
+ * Created by PLANETMEDIA on 09/01/2018.
  */
-data class SchedulleCallRequest (
-    var access_token: String="",
-    var candidateld: String="",
-    var ScheduleCallPOST: ScheduleCallPost=ScheduleCallPost()
+data class ScheduleCallRequest (
+        var access_token: String="",
+        var candidateld: String="",
+        var ScheduleCallPOST: ScheduleCallPost=ScheduleCallPost()
 ) {
 
 

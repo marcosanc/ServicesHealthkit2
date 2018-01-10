@@ -251,5 +251,101 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun invocarRecoverPassword(recover: RecoverPasswordBodyRequest){
+        disposable =  apisRPM.getRecoverPassword(recover.copy())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarRecoverPass(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarRecoverPass(pass:ResponseRecoverPassword){
+
+        Log.i("taml", pass.toString())
+
+    }
+
+    fun invocarDefectiveDevice(defect: DefectiveDeviceRequest){
+        disposable =  apisRPM.getDefectiveDevice(defect.access_token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarDefectDevice(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarDefectDevice(stat:ResponseDefectiveDevice){
+
+        Log.i("taml", stat.toString())
+
+    }
+
+    fun invocarMedicalDevicePost(mDevicep: MedicalDevicePostRequest){
+        disposable =  apisRPM.getMedicalDevicePost(mDevicep.access_token, mDevicep.copy())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarMedicalDevicePost(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarMedicalDevicePost(devicep:ResponseMedicalDevicePost){
+
+        Log.i("taml", devicep.toString())
+
+    }
+
+    fun invocarScheduleCall(schedule:ScheduleCallRequest){
+        disposable = apisRPM.getScheduleCall(schedule.access_token, schedule.candidateld, schedule.copy())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarScheduleCall(result)},
+                        { error -> Log.d("error",error.message)}
+                )
+    }
+
+    fun usarScheduleCall(scall: ResponseScheduleCall){
+
+        Log.i("taml", scall.toString())
+    }
+
+    fun invocarAccomplish(accomp:ActivityIdAccomplishRequest){
+        disposable = apisRPM.getAccomplish(accomp.access_token, accomp.activityId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarAccomplish(result)},
+                        { error -> Log.d("error",error.message)}
+                )
+    }
+
+    fun usarAccomplish(usaccom: ResponseAccomplish){
+
+        Log.i("taml", usaccom.toString())
+    }
+
+    fun invocarHealthIndicMeasurement(measure : MedicalDevIdHealthPostRequest){
+        disposable = apisRPM.getHealthIndicMeasurement(measure.access_token, measure.medicalDeviceId, measure.copy())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarHealthMeasurement(result)},
+                        { error -> Log.d("error",error.message)}
+                )
+    }
+
+    fun usarHealthMeasurement(hmeasu: ResponseHealthIndicMeasurement){
+
+        Log.i("taml", hmeasu.toString())
+    }
+
 }
 

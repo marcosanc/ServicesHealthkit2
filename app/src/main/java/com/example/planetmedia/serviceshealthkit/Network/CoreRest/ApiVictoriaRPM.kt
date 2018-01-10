@@ -1,6 +1,10 @@
 package com.victoria.planetmedia.androidtabvictoria.network
 import com.chilangolabs.victoria.network.RsObjects.ResponseActivationCode
+import com.example.planetmedia.serviceshealthkit.Network.RqObjets.ScheduleCallRequest
 import com.example.planetmedia.serviceshealthkit.Network.RsObjets.*
+import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.MedicalDevIdHealthPostRequest
+import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.MedicalDevicePostRequest
+import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.RecoverPasswordBodyRequest
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -53,6 +57,27 @@ interface ApiVictoriaRPM {
 
     @GET("/candidates/{candidateId}/working-hours")
     fun getWorkingHours(@Query("access_token") token: String, @Path(value = "candidateId", encoded = true) candidateId : String): Observable<List<ResponseWorkingHours>>
+
+    //ServicesPOST
+
+    @POST("/anonymous/recover-password")
+    fun getRecoverPassword(@Body RecoverPasswordPOST: RecoverPasswordBodyRequest): Observable<ResponseRecoverPassword>
+
+    @POST("/me/defective-device")
+    fun getDefectiveDevice(@Query("access_token ") token: String): Observable<ResponseDefectiveDevice>
+
+    @POST("/me/medical-device")
+    fun getMedicalDevicePost(@Query("access_token ") token: String, @Body MedicalDevicePOST :MedicalDevicePostRequest): Observable<ResponseMedicalDevicePost>
+
+    @POST("/candidates/{candidateId}/schedule-call")
+    fun getScheduleCall(@Query("access_token ") token: String,@Path(value = "candidateId", encoded = true) candidateId : String, @Body ScheduleCallPOST : ScheduleCallRequest): Observable<ResponseScheduleCall>
+
+    @POST("/activity/{activityId}/accomplish")
+    fun getAccomplish(@Query("access_token ") token: String,@Path(value = "activityId", encoded = true) activityId : String): Observable<ResponseAccomplish>
+
+    @POST("/medical-device/{medicalDeviceId}/health-indicator-measurement")
+    fun getHealthIndicMeasurement(@Query("access_token ") token: String, @Path(value = "medicalDeviceId", encoded = true) medicalDeviceId : String, @Body HealthIndicatorMeasurementPOST : MedicalDevIdHealthPostRequest): Observable<ResponseHealthIndicMeasurement>
+
 
 
 
