@@ -82,6 +82,9 @@ interface ApiVictoriaRPM {
     @POST("/patient-monitoring-plan/{monitoringPlanId}/health-indicator-goal")
     fun getHealthIndicGoal(@Query("access_token ") token: String, @Path(value = "monitoringPlanId ", encoded = true) monitoringPlanId  : String, @Body HealthIndicatorGoalPOST : PatientMonHealthIndGoalRequest): Observable<ResponseHealthIndicatorGoal>
 
+    @POST("/activity/{activityId}/bookmark")
+    fun getBookmark(@Query("access_token ") token: String, @Path(value = "activityId", encoded = true) activityId : String): Observable<ResponseBookmark>
+
 
 
     companion object objVictoriaRPM {

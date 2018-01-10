@@ -362,5 +362,20 @@ class MainActivity : AppCompatActivity() {
         Log.i("taml", healthg.toString())
     }
 
+    fun invocarBookmark(book : ActivityIdBookmarkPostRequest){
+        disposable = apisRPM.getBookmark(book.access_token, book.activityId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarBookmark(result)},
+                        { error -> Log.d("error",error.message)}
+                )
+    }
+
+    fun usarBookmark(ubookm: ResponseBookmark){
+
+        Log.i("taml", ubookm.toString())
+    }
+
 }
 
