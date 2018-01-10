@@ -377,5 +377,20 @@ class MainActivity : AppCompatActivity() {
         Log.i("taml", ubookm.toString())
     }
 
+    fun invocarMonitoringIdStep(step : PatientMonPlanIdStepRequest){
+        disposable = apisRPM.getMonitorningPlanIdStep(step.access_token, step.monitoringPlanId, step.copy())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarMonitoringPlanIdStep(result)},
+                        { error -> Log.d("error",error.message)}
+                )
+    }
+
+    fun usarMonitoringPlanIdStep(planst: ResponseMonitoringPlanIdStep){
+
+        Log.i("taml", planst.toString())
+    }
+
 }
 

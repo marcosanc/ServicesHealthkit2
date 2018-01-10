@@ -5,7 +5,7 @@ package com.example.planetmedia.serviceshealthkit.Network.RqObjets
  */
 data class PatientMonPlanIdStepRequest(
         var access_token:String="",
-        var monitoring: String="",
+        var monitoringPlanId: String="",
         var stepPOST: stepPost= stepPost()
 )
 {
