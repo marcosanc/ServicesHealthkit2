@@ -2,6 +2,7 @@ package com.victoria.planetmedia.androidtabvictoria.network
 import com.chilangolabs.victoria.network.RsObjects.ResponseActivationCode
 import com.example.planetmedia.serviceshealthkit.Network.RqObjets.PatientMonHealthIndGoalRequest
 import com.example.planetmedia.serviceshealthkit.Network.RqObjets.PatientMonPlanIdStepRequest
+import com.example.planetmedia.serviceshealthkit.Network.RqObjets.ReminderRequest
 import com.example.planetmedia.serviceshealthkit.Network.RqObjets.ScheduleCallRequest
 import com.example.planetmedia.serviceshealthkit.Network.RsObjets.*
 import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.MedicalDevIdHealthPostRequest
@@ -88,6 +89,9 @@ interface ApiVictoriaRPM {
 
     @POST("/patient-monitoring-plan/{monitoringPlanId}/step")
     fun getMonitorningPlanIdStep(@Query("access_token ") token: String, @Path(value = "monitoringPlanId ", encoded = true) monitoringPlanId : String, @Body StepPOST : PatientMonPlanIdStepRequest): Observable<ResponseMonitoringPlanIdStep>
+
+    @POST("/health-coach/{healthCoachId}/reminder")
+    fun getReminder(@Query("access_token ") token: String, @Path(value = "healthCoachId ", encoded = true) healthCoachId : String, @Body ReminderPOST : ReminderRequest): Observable<ResponseReminder>
 
 
 

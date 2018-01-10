@@ -392,5 +392,20 @@ class MainActivity : AppCompatActivity() {
         Log.i("taml", planst.toString())
     }
 
+    fun invocarReminder(lremin : ReminderRequest){
+        disposable = apisRPM.getReminder(lremin.access_token, lremin.healthCoachId, lremin.copy())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarReminder(result)},
+                        { error -> Log.d("error",error.message)}
+                )
+    }
+
+    fun usarReminder(urem: ResponseReminder){
+
+        Log.i("taml", urem.toString())
+    }
+
 }
 
