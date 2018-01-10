@@ -7,6 +7,7 @@ import com.example.planetmedia.serviceshealthkit.Network.RqObjets.ScheduleCallRe
 import com.example.planetmedia.serviceshealthkit.Network.RsObjets.*
 import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.MedicalDevIdHealthPostRequest
 import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.MedicalDevicePostRequest
+import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.PatientRequest
 import com.victoria.planetmedia.androidtabvictoria.network.RqObjects.RecoverPasswordBodyRequest
 import io.reactivex.Observable
 import retrofit2.Retrofit
@@ -63,8 +64,11 @@ interface ApiVictoriaRPM {
 
     //ServicesPOST
 
-    @POST("/anonymous/recover-password")
+    @POST("anonymous/recover-password")
     fun getRecoverPassword(@Body RecoverPasswordPOST: RecoverPasswordBodyRequest): Observable<ResponseRecoverPassword>
+
+    @POST("anonymous/patient")
+    fun getAnonimusPatient(@Query("temporal_token ") token: String, @Body PatientPOST : PatientRequest): Observable<ResponseAnonimusPatient>
 
     @POST("/me/defective-device")
     fun getDefectiveDevice(@Query("access_token ") token: String): Observable<ResponseDefectiveDevice>

@@ -268,6 +268,23 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun invocarAnonimusPatient(patient: PatientRequest){
+        disposable =  apisRPM.getAnonimusPatient(patient.temporal_token, patient.copy())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> usarPatient(result)},
+                        { error -> Log.d("error",error.message) }
+                )
+
+    }
+
+    fun  usarPatient(pass:ResponseAnonimusPatient){
+
+        Log.i("taml", pass.toString())
+
+    }
+
     fun invocarDefectiveDevice(defect: DefectiveDeviceRequest){
         disposable =  apisRPM.getDefectiveDevice(defect.access_token)
                 .subscribeOn(Schedulers.io())
